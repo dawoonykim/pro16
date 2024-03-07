@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+    <script>
+        function fn_process() {
+            var reply=$("input[type*=text]").val();
+            $.ajax({
+                type: "get",
+                dataType: "text",
+                url: "http://localhost:8090/pro16/ajaxTest2",
+                data: {menu: reply},
+                success: function (toClient, status) {
+                    console.log("succ");
+                    console.log(toClient, status);
+                    $("#message").append(toClient+"<br>");
+                },
+                error: function () {
+                    console.log("err");
+                },
+                complete: function () {
+                    console.log("comp");
+                }
+            })
+        }
+    </script>
+</head>
+
+<body>
+    <form>
+        <input type="text" value="욕설금지">
+        <input type="button" value="전송하기" onclick="fn_process()"><br><br>
+    </form>
+    <div id="message"></div>
+</body>
+
+</html>

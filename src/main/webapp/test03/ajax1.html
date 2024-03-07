@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+<script>
+function fn_process() {
+	$.ajax({
+        type: "get",
+        dataType: "text",
+        url: "http://localhost:8090/pro16/ajaxTest1",
+        data: {menu: "짜장"},
+        success: function (toClient, status) {
+            console.log("succ");
+            console.log(toClient, status);
+            
+            // System.out.println(toClient+","+status);
+            $("#message").append(toClient);
+        },
+        error: function () {
+            console.log("err");
+        },
+        complete: function () {
+            console.log("com");
+        }
+    });
+}
+</script>
+</head>
+<body>
+<form>
+<input type="button" value="전송하기" onclick="fn_process()"><br><br>
+</form>
+<div id="message"></div>
+</body>
+</html>
